@@ -9,7 +9,7 @@ let rate = 1;
 
 const fetchCurrencies = async () => {
   try {
-    const result = await fetch("http://localhost:8080/getCurrencies");
+    const result = await fetch("/getCurrencies");
     return await result.json();
   } catch (e) {
     return;
@@ -19,7 +19,7 @@ const fetchCurrencies = async () => {
 const changeCurrency = async () => {
   if (baseCurrency.value && toCurrency.value)
     try {
-      const result = await fetch(`http://localhost:8080/getRate?base_currency=${baseCurrency.value}`);
+      const result = await fetch(`/getRate?base_currency=${baseCurrency.value}`);
       return await result.json();
     } catch (e) {
       return;

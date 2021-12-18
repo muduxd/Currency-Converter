@@ -32,7 +32,7 @@ app.get("/getRate", (request, response) => {
 app.get("/getCurrencies", (request, response) => {
   req({ url: BASE_URL, json: true }, (error, { body }) => {
     if (error) response.status(500).send({ error: "Invalid Request" });
-    else response.status(201).send(Object.keys(body.data));
+    else response.status(201).send(Object.keys(body.data).sort());
   });
 });
 

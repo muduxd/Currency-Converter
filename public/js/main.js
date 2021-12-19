@@ -27,10 +27,8 @@ const changeCurrency = async () => {
   return;
 };
 
-fetchCurrencies().then((result) => {
-  currencies = result;
-
-  currencies.forEach((currency) => {
+fetchCurrencies().then(({ currencies, symbols }) => {
+  currencies.forEach((currency, index) => {
     const option1 = document.createElement("option");
     const option2 = document.createElement("option");
 
@@ -40,6 +38,21 @@ fetchCurrencies().then((result) => {
     option1.textContent = currency;
     option2.textContent = currency;
 
+    if (symbols[index]) {
+      if (symbols[index] === "$") {
+        option1.textContent += ` - ${currency[0]}${currency[1]}${symbols[index]}`;
+        option2.textContent += ` - ${currency[0]}${currency[1]}${symbols[index]}`;
+      } else {
+        option1.textContent += ` - ${symbols[index]}`;
+        option2.textContent += ` - ${symbols[index]}`;
+      }
+    }
+
+    if (currency === "EUR") {
+      option1.selected = true;
+      option2.selected = true;
+    }
+
     baseCurrency.appendChild(option1);
     toCurrency.appendChild(option2);
   });
@@ -48,16 +61,16 @@ fetchCurrencies().then((result) => {
 baseCurrency.addEventListener("change", () =>
   changeCurrency().then((result) => {
     rate = result[toCurrency.value];
-    toInput.value = (baseInput.value * rate).toFixed(2);
+    toInput.value = baseInput.value * rate;
   })
 );
 
 toCurrency.addEventListener("change", () =>
   changeCurrency().then((result) => {
     rate = result[toCurrency.value];
-    baseInput.value = (toInput.value / rate).toFixed(2);
+    baseInput.value = toInput.value / rate;
   })
 );
 
-baseInput.addEventListener("keyup", () => (toInput.value = (baseInput.value * rate).toFixed(2)));
-toInput.addEventListener("keyup", () => (baseInput.value = (toInput.value / rate).toFixed(2)));
+baseInput.addEventListener("keyup", () => (toInput.value = baseInput.value * rate));
+toInput.addEventListener("keyup", () => (baseInput.value = toInput.value / rate));

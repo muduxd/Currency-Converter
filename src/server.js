@@ -1,3 +1,4 @@
+const getSymbolFromCurrency = require("currency-symbol-map");
 const express = require("express");
 const req = require("request");
 const path = require("path");
@@ -15,9 +16,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 //!-ROUTES-
 
-app.get("/", (request, response) => {
-  response.render("main");
-});
+app.get("/", (request, response) => response.render("main"));
 
 app.get("/getRate", (request, response) => {
   const baseCurrency = request.query.base_currency;
@@ -32,8 +31,14 @@ app.get("/getRate", (request, response) => {
 app.get("/getCurrencies", (request, response) => {
   req({ url: BASE_URL, json: true }, (error, { body }) => {
     if (error) response.status(500).send({ error: "Invalid Request" });
-    else response.status(201).send(Object.keys(body.data).sort());
+    else
+      response.status(201).send({
+        currencies: Object.keys(body.data).sort(),
+        symbols: Object.keys(body.data)
+          .sort()
+          .map((currency) => getSymbolFromCurrency(currency)),
+      });
   });
 });
 
-app.listen(PORT, () => console.log(`Server is active at http://localhost:${PORT}`));
+app.listen(PORT);

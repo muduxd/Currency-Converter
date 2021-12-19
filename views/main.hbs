@@ -9,17 +9,18 @@
     <script src="/js/main.js" defer></script>
   </head>
   <body>
-    <form>
-      <div>
-        <select name="currency" id="base-currency">
-        </select>
-        <input type="number" placeholder="0" id="base-input" />
-      </div>
-      <div>
-        <select name="currency" id="to-currency">
-        </select>
-        <input type="number" placeholder="0" id="to-input" />
-      </div>
-    </form>
+    <div id="container">
+      <div id="title">Currency Converter</div>
+      <form>
+        <div>
+          <select name="currency" id="base-currency"></select>
+          <input type="number" placeholder="0" id="base-input" />
+        </div>
+        <div>
+          <select name="currency" id="to-currency"></select>
+          <input type="number" placeholder="0" id="to-input" />
+        </div>
+      </form>
+    </div>
   </body>
 </html>

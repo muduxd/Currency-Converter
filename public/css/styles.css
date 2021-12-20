@@ -9,7 +9,6 @@ input[type="number"] {
 }
 
 body {
-  width: 100%;
   background: dodgerblue linear-gradient(70deg, aqua, dodgerblue, rgb(0, 235, 90)) fixed;
   color: white;
   text-align: center;
@@ -20,17 +19,28 @@ body {
 *::after {
   box-sizing: border-box;
   padding: 0;
-  margin: 10px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 30px;
+  font-size: 1.5rem;
 }
 
 #container {
-  margin-top: 150px;
+  margin-top: 5%;
 }
 
 #title {
-  font-size: 50px;
+  font-size: 2.5rem;
   font-weight: bolder;
-  margin: 50px;
+  margin: 5%;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+select,
+input {
+  width: 10rem;
+  margin: 0.5%;
 }

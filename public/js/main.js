@@ -29,36 +29,35 @@ const changeCurrency = async () => {
 
 fetchCurrencies().then(({ currencies, symbols }) => {
   currencies.forEach((currency, index) => {
-    const option1 = document.createElement("option");
-    const option2 = document.createElement("option");
+    if (currency !== "BTC") {
+      const option1 = document.createElement("option");
+      const option2 = document.createElement("option");
 
-    option1.value = currency;
-    option2.value = currency;
+      option1.value = currency;
+      option2.value = currency;
 
-    option1.textContent = currency;
-    option2.textContent = currency;
+      option1.textContent = currency;
+      option2.textContent = currency;
 
-    if (symbols[index]) {
-      option1.textContent += ` - ${symbols[index]}`;
-      option2.textContent += ` - ${symbols[index]}`;
+      if (symbols[index]) {
+        option1.textContent += ` - ${symbols[index]}`;
+        option2.textContent += ` - ${symbols[index]}`;
+      }
+
+      if (currency === "EUR") {
+        option1.selected = true;
+        option2.selected = true;
+      }
+
+      baseCurrency.appendChild(option1);
+      toCurrency.appendChild(option2);
     }
-
-    if (currency === "EUR") {
-      option1.selected = true;
-      option2.selected = true;
-    }
-
-    baseCurrency.appendChild(option1);
-    toCurrency.appendChild(option2);
   });
 });
 
 baseCurrency.addEventListener("change", () =>
   changeCurrency().then((result) => {
     rate = result[toCurrency.value];
-
-    if (baseCurrency.value === "BTC") rate *= 1000;
-    if (baseCurrency.value === toCurrency.value) rate = 1;
 
     toInput.value = baseInput.value * rate;
   })
@@ -67,9 +66,6 @@ baseCurrency.addEventListener("change", () =>
 toCurrency.addEventListener("change", () =>
   changeCurrency().then((result) => {
     rate = result[toCurrency.value];
-
-    if (toCurrency.value === "BTC") rate /= 1000;
-    if (baseCurrency.value === toCurrency.value) rate = 1;
 
     baseInput.value = toInput.value / rate;
   })

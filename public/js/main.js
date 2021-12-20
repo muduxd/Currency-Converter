@@ -39,13 +39,8 @@ fetchCurrencies().then(({ currencies, symbols }) => {
     option2.textContent = currency;
 
     if (symbols[index]) {
-      if (symbols[index] === "$") {
-        option1.textContent += ` - ${currency[0]}${currency[1]}${symbols[index]}`;
-        option2.textContent += ` - ${currency[0]}${currency[1]}${symbols[index]}`;
-      } else {
-        option1.textContent += ` - ${symbols[index]}`;
-        option2.textContent += ` - ${symbols[index]}`;
-      }
+      option1.textContent += ` - ${symbols[index]}`;
+      option2.textContent += ` - ${symbols[index]}`;
     }
 
     if (currency === "EUR") {
@@ -61,6 +56,10 @@ fetchCurrencies().then(({ currencies, symbols }) => {
 baseCurrency.addEventListener("change", () =>
   changeCurrency().then((result) => {
     rate = result[toCurrency.value];
+
+    if (baseCurrency.value === "BTC") rate *= 1000;
+    if (baseCurrency.value === toCurrency.value) rate = 1;
+
     toInput.value = baseInput.value * rate;
   })
 );
@@ -68,6 +67,10 @@ baseCurrency.addEventListener("change", () =>
 toCurrency.addEventListener("change", () =>
   changeCurrency().then((result) => {
     rate = result[toCurrency.value];
+
+    if (toCurrency.value === "BTC") rate /= 1000;
+    if (baseCurrency.value === toCurrency.value) rate = 1;
+
     baseInput.value = toInput.value / rate;
   })
 );

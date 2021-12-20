@@ -23,21 +23,23 @@ app.get("/getRate", (request, response) => {
   const url = `${BASE_URL}&base_currency=${baseCurrency}`;
 
   req({ url, json: true }, (error, { body }) => {
-    if (error) response.status(500).send({ error: "Invalid Request" });
+    if (error) response.status(500).send({});
     else response.status(201).send(body.data);
   });
 });
 
 app.get("/getCurrencies", (request, response) => {
   req({ url: BASE_URL, json: true }, (error, { body }) => {
-    if (error) response.status(500).send({ error: "Invalid Request" });
-    else
+    if (error) response.status(500).send({});
+    else {
+      const currencyList = Object.keys(body.data);
+      currencyList.push("USD");
+
       response.status(201).send({
-        currencies: Object.keys(body.data).sort(),
-        symbols: Object.keys(body.data)
-          .sort()
-          .map((currency) => getSymbolFromCurrency(currency)),
+        currencies: currencyList.sort(),
+        symbols: currencyList.sort().map((currency) => getSymbolFromCurrency(currency)),
       });
+    }
   });
 });
 

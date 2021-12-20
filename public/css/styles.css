@@ -1,3 +1,13 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 body {
   width: 100%;
   background: dodgerblue linear-gradient(70deg, aqua, dodgerblue, rgb(0, 235, 90)) fixed;
@@ -16,9 +26,11 @@ body {
 }
 
 #container {
-  margin-top: 200px;
+  margin-top: 150px;
 }
 
 #title {
-  font-size: 40px;
+  font-size: 50px;
+  font-weight: bolder;
+  margin: 50px;
 }

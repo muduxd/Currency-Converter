@@ -43,4 +43,8 @@ app.get("/getCurrencies", (request, response) => {
   });
 });
 
+app.get("*", (request, response) => response.render("404"));
+
+//!-LISTEN-
+
 app.listen(PORT);

@@ -1,1 +1,1 @@
-Currency converting app made in node js
+Currency converting app made using NodeJS 

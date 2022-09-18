@@ -61,6 +61,8 @@ fetchCurrencies().then(({ currencies, symbols }) => {
   })
 })
 
+// !CURRENCY CHANGE
+
 baseCurrency.addEventListener("change", () =>
   changeCurrency().then((result) => {
     rate = result[toCurrency.value]
@@ -77,6 +79,25 @@ toCurrency.addEventListener("change", () =>
   })
 )
 
+
+// !VALUE CHANGE
+
+baseInput.addEventListener("input", () => {
+  if (baseInput.value[0] === "0") {
+    baseInput.value = ""
+    toInput.value = ""
+  }
+})
+
+toInput.addEventListener("input", () => {
+  if (toInput.value[0] === "0") {
+    baseInput.value = ""
+    toInput.value = ""
+  }
+})
+
+
+// !KEYPRESS EVENT
 
 baseInput.addEventListener("keyup", () => (toInput.value = baseInput.value * rate))
 toInput.addEventListener("keyup", () => (baseInput.value = toInput.value / rate))

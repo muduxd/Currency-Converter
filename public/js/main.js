@@ -83,14 +83,14 @@ toCurrency.addEventListener("change", () =>
 // !VALUE CHANGE
 
 baseInput.addEventListener("input", () => {
-  if (baseInput.value[0] === "0") {
+  if (baseInput.value[1] === "0") {
     baseInput.value = ""
     toInput.value = ""
   }
 })
 
 toInput.addEventListener("input", () => {
-  if (toInput.value[0] === "0") {
+  if (toInput.value[1] === "0") {
     baseInput.value = ""
     toInput.value = ""
   }

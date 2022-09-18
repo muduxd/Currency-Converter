@@ -17,20 +17,24 @@ body {
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  padding: 0;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  box-sizing: border-box;
   font-size: 1.5rem;
-}
-
-#container {
-  margin-top: 5%;
+  margin:  0;
+  padding: 0;
+  user-select: none; 
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 #title {
   font-size: 2.5rem;
   font-weight: bolder;
   margin: 5%;
+  margin-top: 5%;
 }
 
 form {
@@ -43,4 +47,14 @@ select,
 input {
   width: 10rem;
   margin: 0.5%;
+}
+
+.not-found-title {
+  font-weight: 900;
+  font-size: 80px;
+}
+
+.not-found-body {
+  font-weight: 600;
+  font-size: 35px;
 }

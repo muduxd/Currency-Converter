@@ -8,9 +8,23 @@
     <link rel="icon" href="/images/favicon.png" />
   </head>
   <body>
-    <div id="container">
-      <div id="title">Currency Converter</div>
-      <div>404 Page Not Found</div>
-    </div>
+    <div id="title">Currency Converter</div>
+    <div class="not-found-title">404</div>
+    <div class="not-found-body">Page Not Found</div>
+
+    <script>
+      document.onkeydown = e => {
+        if(e.keyCode == 123) return false
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false
+        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false
+      }
+
+      document.addEventListener("contextmenu", event => event.preventDefault())
+      document.addEventListener("dragstart", event => event.preventDefault())
+      document.addEventListener("drop", event => event.preventDefault())
+    </script>
+
   </body>
 </html>

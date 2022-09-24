@@ -1,25 +1,9 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-body {
-  background: dodgerblue linear-gradient(70deg, aqua, dodgerblue, rgb(0, 235, 90)) fixed;
-  color: white;
-  text-align: center;
-}
-
-*,
-*::before,
-*::after {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+*, *::before, *::after {
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
-  font-size: 1.5rem;
+  font-size: 30px;
   margin:  0;
   padding: 0;
   user-select: none; 
@@ -30,9 +14,29 @@ body {
   -ms-user-select: none;
 }
 
+
+body {
+  background: dodgerblue linear-gradient(70deg, aqua, dodgerblue, rgb(0, 235, 90)) fixed;
+  color: white;
+  text-align: center;
+}
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
 #title {
   font-size: 2.5rem;
-  font-weight: bolder;
+  font-weight: 700;
   margin: 5%;
   margin-top: 5%;
 }
@@ -43,18 +47,17 @@ form {
   flex-direction: column;
 }
 
-select,
-input {
+select, input {
   width: 10rem;
   margin: 0.5%;
 }
 
 .not-found-title {
-  font-weight: 900;
-  font-size: 80px;
+  font-weight: 700;
+  font-size: 100px;
 }
 
 .not-found-body {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 35px;
 }
